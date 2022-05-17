@@ -17,7 +17,8 @@ class Notes extends StatelessWidget {
             (element) => Card(
               child: Column(
                 children: [
-                  Image.asset('assets/img.jpg'),
+                  //Image.asset('assets/img.jpg'),
+                  Text('Note content'),
                   Text(element),
                 ],
               ),
