@@ -2,13 +2,13 @@ class Note {
   final int id;
   final String title;
   final String content;
-  final int color;
+  final String color;
 
   Note(
       {this.id = 1,
       this.title = 'Title',
       this.content = 'Content',
-      this.color = 0});
+      this.color = 'red'});
 
   Map<String, dynamic> toMap() {
     Map<String, dynamic> data = Map<String, dynamic>();
