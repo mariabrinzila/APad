@@ -1,14 +1,17 @@
-class NoteModel {
+class Note {
   int id;
   String title;
   String content;
 
-  NoteModel({this.id = 0, this.title = 'Title', this.content = 'Content'});
+  Note(
+      {this.id = null,
+      this.title = "Note title",
+      this.content = "Note content"});
 
   Map<String, dynamic> toMap() {
-    Map<String, dynamic> data = <String, dynamic>{};
+    Map<String, dynamic> data = Map<String, dynamic>();
 
-    if (id != 0) data['id'] = id;
+    if (id != null) data['id'] = id;
 
     data['title'] = title;
     data['content'] = content;
