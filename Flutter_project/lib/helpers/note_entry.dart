@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 
 class NoteEntry extends StatefulWidget {
   final _textFieldController;
+  final _fontStyleController;
+  final _fontSizeController;
+  final _fontController;
 
-  NoteEntry(this._textFieldController);
+  NoteEntry(this._textFieldController, this._fontStyleController,
+      this._fontSizeController, this._fontController);
 
   @override
   _NoteEntry createState() => _NoteEntry();
@@ -11,9 +15,6 @@ class NoteEntry extends StatefulWidget {
 
 class _NoteEntry extends State<NoteEntry> with WidgetsBindingObserver {
   FocusNode _textFieldFocusNode = FocusNode();
-
-  bool bold = true, italic = false, underlined = false;
-  double size = 19;
 
   @override
   void initState() {
@@ -48,13 +49,24 @@ class _NoteEntry extends State<NoteEntry> with WidgetsBindingObserver {
         textCapitalization: TextCapitalization.sentences,
         decoration: null,
         style: TextStyle(
-          fontSize: size,
+          fontSize: double.parse(widget._fontSizeController.text),
           height: 1.5,
-          fontWeight: (bold == true ? FontWeight.bold : FontWeight.normal),
-          fontStyle: (italic == false ? FontStyle.italic : FontStyle.normal),
-          decoration: (underlined == false
+          fontWeight: (widget._fontStyleController.text == 'bold'
+              ? FontWeight.bold
+              : FontWeight.normal),
+          fontStyle: (widget._fontStyleController.text == 'italic'
+              ? FontStyle.italic
+              : FontStyle.normal),
+          decoration: (widget._fontStyleController.text == 'underlined'
               ? TextDecoration.underline
               : TextDecoration.none),
+          fontFamily: (widget._fontController.text == 'dancing'
+              ? 'DancingScript'
+              : (widget._fontController.text == 'indie'
+                  ? 'IndieFlower'
+                  : (widget._fontController.text == 'pacifico'
+                      ? 'Pacifico'
+                      : 'Tiro'))),
         ),
       ),
     );

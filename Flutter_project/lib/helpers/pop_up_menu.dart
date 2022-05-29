@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../theme/colors.dart';
 
-// More Menu to display various options like Color, Sort, Share...
 class PopUpMenu extends StatelessWidget {
   final menuItems = const {
     1: {'name': 'Delete', 'icon': Icons.delete},
@@ -11,6 +10,9 @@ class PopUpMenu extends StatelessWidget {
     4: {'name': 'Underlined', 'icon': Icons.format_underline},
     5: {'name': 'Size +', 'icon': Icons.format_size},
     6: {'name': 'Size -', 'icon': Icons.format_size},
+    7: {'name': 'Font DancingScript', 'icon': Icons.title},
+    8: {'name': 'Font IndieFlower', 'icon': Icons.title},
+    9: {'name': 'Font Pacifico', 'icon': Icons.title},
   };
 
   final parentContext;

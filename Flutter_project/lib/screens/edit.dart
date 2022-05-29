@@ -18,8 +18,16 @@ class _Edit extends State<Edit> {
   String title = '';
   String content = '';
 
+  String fontStyle = '';
+  String fontSize = '15';
+  String font = '';
+
   TextEditingController _titleTextController = TextEditingController();
   TextEditingController _contentTextController = TextEditingController();
+
+  TextEditingController _fontStyleController = TextEditingController();
+  TextEditingController _fontSizeController = TextEditingController();
+  TextEditingController _fontController = TextEditingController();
 
   void onSelectButton(BuildContext currentContext, String optionName) {
     switch (optionName) {
@@ -28,23 +36,35 @@ class _Edit extends State<Edit> {
         break;
 
       case 'Bold':
-        //textBold();
+        textBold();
         break;
 
       case 'Italic':
-        //textItalic();
+        textItalic();
         break;
 
       case 'Underlined':
-        //textUnderlined();
+        textUnderlined();
         break;
 
       case 'Size +':
-        //textSizePlus();
+        textSizePlus();
         break;
 
       case 'Size -':
-        //textSizeMinus();
+        textSizeMinus();
+        break;
+
+      case 'Font DancingScript':
+        textFontDancing();
+        break;
+
+      case 'Font IndieFlower':
+        textFontIndie();
+        break;
+
+      case 'Font Pacifico':
+        textFontPacifico();
         break;
     }
   }
@@ -114,14 +134,88 @@ class _Edit extends State<Edit> {
     });
   }
 
+  // font style change handler
+  void fontStyleChange() {
+    setState(() {
+      fontStyle = _fontStyleController.text.trim();
+    });
+  }
+
+  // font size change handler
+  void fontSizeChange() {
+    setState(() {
+      fontSize = _fontSizeController.text.trim();
+    });
+  }
+
+  // font size change handler
+  void fontChange() {
+    setState(() {
+      font = _fontController.text.trim();
+    });
+  }
+
   // bold handler
-  textBold() {}
+  textBold() {
+    setState(() {
+      _fontStyleController.text = 'bold';
+    });
+  }
 
   // italic handler
-  textItalic() {}
+  textItalic() {
+    setState(() {
+      _fontStyleController.text = 'italic';
+    });
+  }
 
   // underlined handler
-  textUnderlined() {}
+  textUnderlined() {
+    setState(() {
+      _fontStyleController.text = 'underlined';
+    });
+  }
+
+  // size + handler
+  textSizePlus() {
+    setState(() {
+      int size = int.parse(fontSize);
+      size += 1;
+
+      _fontSizeController.text = size.toString();
+    });
+  }
+
+  // size - handler
+  textSizeMinus() {
+    setState(() {
+      int size = int.parse(fontSize);
+      size -= 1;
+
+      _fontSizeController.text = size.toString();
+    });
+  }
+
+  // font handler (DancintScript)
+  textFontDancing() {
+    setState(() {
+      _fontController.text = 'dancing';
+    });
+  }
+
+  // font handler (IndieFlower)
+  textFontIndie() {
+    setState(() {
+      _fontController.text = 'indie';
+    });
+  }
+
+  // font handler (IndieFlower)
+  textFontPacifico() {
+    setState(() {
+      _fontController.text = 'pacifico';
+    });
+  }
 
   // back button handler
   void backButton() async {
@@ -183,14 +277,26 @@ class _Edit extends State<Edit> {
     _contentTextController.text =
         (widget.args[0] == 'new' ? '' : widget.args[1]['content']);
 
+    _fontStyleController.text = fontStyle;
+    _fontSizeController.text = fontSize;
+    _fontController.text = fontSize;
+
     _titleTextController.addListener(titleTextChange);
     _contentTextController.addListener(contentChange);
+
+    _fontStyleController.addListener(fontStyleChange);
+    _fontSizeController.addListener(fontSizeChange);
+    _fontController.addListener(fontChange);
   }
 
   @override
   void dispose() {
     _titleTextController.dispose();
     _contentTextController.dispose();
+
+    _fontStyleController.dispose();
+    _fontSizeController.dispose();
+    _fontController.dispose();
 
     super.dispose();
   }
@@ -224,7 +330,8 @@ class _Edit extends State<Edit> {
             ),
           ],
         ),
-        body: NoteEntry(_contentTextController),
+        body: NoteEntry(_contentTextController, _fontStyleController,
+            _fontSizeController, _fontController),
       ),
     );
   }

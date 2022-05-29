@@ -49,10 +49,10 @@ class _TitleEntry extends State<TitleEntry> with WidgetsBindingObserver {
         contentPadding: EdgeInsets.all(0),
         counter: null,
         counterText: "",
-        hintText: 'Title',
+        hintText: 'Note title',
         hintStyle: TextStyle(
           fontSize: 21,
-          fontWeight: FontWeight.bold,
+          fontStyle: FontStyle.italic,
           height: 1.5,
           color: text,
         ),
